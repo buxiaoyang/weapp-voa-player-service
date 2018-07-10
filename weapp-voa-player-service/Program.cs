@@ -29,8 +29,9 @@ namespace weapp_voa_player_service
                 Common.log.Info("Serialized data string ready");
                 Common.log.Debug(dataString);
 
-                Common.log.Info(String.Format("Save data as file: {0}", "data.json"));
-                File.WriteAllText("data.json", dataString);
+                string savePath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "data.json");
+                Common.log.Info(String.Format("Save data as file: {0}", savePath));
+                File.WriteAllText(savePath, dataString);
                 Common.log.Info("Data file ready");
             }
             catch(Exception ex)

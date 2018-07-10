@@ -13,6 +13,7 @@ namespace weapp_voa_player_service
 
         public static readonly String Server = ConfigurationManager.AppSettings["Server"];
         public static readonly String ListURL = ConfigurationManager.AppSettings["ListURL"];
+        public static readonly Int16 ItemCount = Int16.Parse(ConfigurationManager.AppSettings["ItemCount"]);
         public static readonly String ListRegex = ConfigurationManager.AppSettings["ListRegex"];
         public static readonly String DateRegex = ConfigurationManager.AppSettings["DateRegex"];
         public static readonly String AudioRegex = ConfigurationManager.AppSettings["AudioRegex"];
