@@ -11,6 +11,7 @@ namespace weapp_voa_player_service
     {
         public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        public static readonly String SaveFile = ConfigurationManager.AppSettings["SaveFile"];
         public static readonly String Server = ConfigurationManager.AppSettings["Server"];
         public static readonly String ListURL = ConfigurationManager.AppSettings["ListURL"];
         public static readonly Int16 ItemCount = Int16.Parse(ConfigurationManager.AppSettings["ItemCount"]);
