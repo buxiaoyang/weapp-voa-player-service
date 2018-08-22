@@ -52,10 +52,13 @@ namespace weapp_voa_player_service.Models
 
                         itemModel.date = itemModel.getDate(itemHTML);
                         itemModel.content = Common.clearHTML(itemModel.getContent(itemHTML));
-                        itemModel.audio = itemModel.getAudio(itemHTML);
+                        itemModel.audio = itemModel.getAudio(itemHTML, itemURL);
 
                         Common.log.Info(String.Format("Add item to list"));
-                        this.items.Add(itemModel);
+                        if(itemModel.content.Trim() != "" && itemModel.audio.Trim() != "")
+                        {
+                            this.items.Add(itemModel);
+                        } 
                     }
                 }
             }

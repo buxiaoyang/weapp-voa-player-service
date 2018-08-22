@@ -41,7 +41,7 @@ namespace weapp_voa_player_service.Models
             return result;
         }
 
-        public String getAudio(String content)
+        public String getAudio(String content, String RefererURL)
         {
             String result = "";
             Common.log.Info(String.Format("Parse item Audio from item html using regex {0}, the group 1 means item AUDIO", Common.AudioRegex));
@@ -53,7 +53,22 @@ namespace weapp_voa_player_service.Models
                 result = matches[0].Groups[1].ToString();
                 Common.log.Info(String.Format("Match group 1 result: {0}", result));
             }
-            return result;
+            //根据mp3 URL和 Referer信息获取真实的mp3 URL
+            return getRealAudio(result, RefererURL);
+        }
+
+        private String getRealAudio(String mp3URL, String RefererURL)
+        {
+            string realMP3URL = "";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(mp3URL);
+            request.Referer = RefererURL;
+            request.Accept = "*/*";
+            request.Headers.Add("Accept-Encoding", "gzip, deflate");
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                realMP3URL = response.ResponseUri.ToString();
+            }
+            return realMP3URL;
         }
 
         public String getContent(String content)
