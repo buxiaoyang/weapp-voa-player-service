@@ -31,6 +31,8 @@ namespace weapp_voa_player_service
             Common.log.Info(String.Format("Replace HTML tag with blank string, all matchs will be repaced with \"\" using regex: {0}", Common.ContentClearRegex));
             Regex regexClear = new Regex(ContentClearRegex, RegexOptions.Singleline);
             input = regexClear.Replace(input, "");
+            Regex regexUnderline = new Regex("_{10,}");
+            input = regexUnderline.Replace(input, "__________");
             Common.log.Info(String.Format("Clear result: {0}", input));
             return input;
         }
