@@ -30,7 +30,7 @@ namespace weapp_voa_player_service.Models
         {
             String result = "";
             Common.log.Info(String.Format("Parse item date from item html using regex {0}, the group 1 means item DATE", Common.DateRegex));
-            Regex regex = new Regex(Common.DateRegex, RegexOptions.Singleline);
+            Regex regex = new Regex(@"<[Ss][Pp][Aa][Nn] class=""?datetime""?>([^<]*)</[Ss][Pp][Aa][Nn]>", RegexOptions.Singleline);
             MatchCollection matches = regex.Matches(content);
             Common.log.Info(String.Format("Item html match count: {0}", matches.Count));
             if (matches.Count > 0)
